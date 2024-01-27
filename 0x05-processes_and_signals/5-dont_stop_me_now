@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#kill program with signal
+pid=$(pidof '4-to_infinity_and_beyond')
+if [ -n "$pid"]; then
+	kill [pid]
+else
+	echo 'process not found'
+fi
