@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 # display pid with process name containing bash
+current_script_pid=$$
 for pid in /proc/*/; do
     pid=${pid%/}
 
     if [ -e "$pid/cmdline" ] && grep -q "/bash" "$pid/cmdline"; then
         process_name=$(tr '\0' ' ' < "$pid/cmdline")
-        echo "${pid##*/} $process_name"
+
+	if [ "${pid##*/}" != "$current_script_pid" ]; then
+        	echo "${pid##*/} $process_name"
+	fi
     fi
 done
