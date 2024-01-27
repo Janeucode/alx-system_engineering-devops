@@ -3,7 +3,7 @@
 for pid in /proc/*/; do
     pid=${pid%/}
 
-    if [ -e "$pid/cmdline" ] && grep -q "bash" "$pid/cmdline"; then
+    if [ -e "$pid/cmdline" ] && grep -q "/bash" "$pid/cmdline"; then
         process_name=$(tr '\0' ' ' < "$pid/cmdline")
         echo "${pid##*/} $process_name"
     fi
